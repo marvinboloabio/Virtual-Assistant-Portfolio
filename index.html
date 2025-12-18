@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jona Mae A. Zurita | Virtual Assistant & SAP Admin Support</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --secondary: #22c55e;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #6C63FF, #9B51E0);
+            /* gradient color */
+            color: #fff;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #9B51E0, #6C63FF);
+            /* subtle hover gradient swap */
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Optional: Add a subtle icon */
+        .btn i {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover i {
+            transform: translateX(5px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVBAR */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav ul li a {
+            font-weight: 500;
+            color: var(--gray);
+        }
+
+        .nav ul li a.active,
+        .nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* HERO REDESIGN */
+        .hero-content {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ede9fe;
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text p {
+            max-width: 520px;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        /* ACTION BUTTONS */
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn i,
+        .btn-outline i {
+            margin-right: 6px;
+        }
+
+        .btn-outline {
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-weight: 500;
+            transition: 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* IMAGE EFFECT */
+        .hero-img {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .img-ring {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6d28d9, #c4b5fd);
+            filter: blur(40px);
+            z-index: 0;
+        }
+
+        .hero-img img {
+            position: relative;
+            width: 280px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @media (max-width: 900px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* TREE TIMELINE */
+        .tree-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+            padding-left: 40px;
+        }
+
+        /* vertical trunk */
+        .tree-timeline::before {
+            content: "";
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #6d28d9, #c4b5fd);
+            border-radius: 5px;
+        }
+
+        .tree-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 40px;
+        }
+
+        /* branch dot */
+        .tree-dot {
+            position: absolute;
+            left: -3px;
+            top: 8px;
+            width: 18px;
+            height: 18px;
+            background: #6d28d9;
+            border-radius: 50%;
+            border: 4px solid #ede9fe;
+            z-index: 2;
+        }
+
+        /* content box */
+        .tree-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: 0.3s ease;
+        }
+
+        .tree-content h3 {
+            margin-bottom: 0.3rem;
+        }
+
+        .tree-content span {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .tree-content p {
+            margin-top: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* hover effect */
+        .tree-item:hover .tree-content {
+            transform: translateX(8px);
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+            .tree-timeline {
+                padding-left: 25px;
+            }
+
+            .tree-content {
+                padding: 1.2rem;
+            }
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 5rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+        }
+
+        .section-title p {
+            color: var(--gray);
+        }
+
+        /* ABOUT REDESIGN */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        /* PROFILE IMAGE */
+        .about-img {
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-img img {
+            width: 280px;
+            border-radius: 20%;
+            /* Slightly rounded rectangle for a modern look */
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            animation: float 4s ease-in-out infinite;
+            object-fit: cover;
+            background-color: #f8f8f8;
+            /* subtle background behind illustration */
+        }
+
+        /* TEXT + SKILLS */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .about-text p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* SKILLS GRID */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-card {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-card i {
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .skill-card span {
+            font-weight: 500;
+        }
+
+        /* Hover effect */
+        .skill-card:hover {
+            transform: translateY(-5px);
+            background: #ede9fe;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .skills-grid {
+                justify-content: center;
+            }
+        }
+
+        /* FLOAT ANIMATION */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* SERVICES */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .service-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            transition: 0.3s;
+        }
+
+        .service-card:hover i {
+            transform: scale(1.2) rotate(-5deg);
+        }
+
+        /* EXPERIENCE */
+        .timeline {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* CONTACT REDESIGN */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .contact-cards {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            background: white;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 1.3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: 0.3s ease;
+        }
+
+        .contact-card i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            background: #ede9fe;
+            padding: 12px;
+            border-radius: 50%;
+        }
+
+        .contact-card h4 {
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .contact-card:hover {
+            transform: translateX(8px);
+        }
+
+        /* FORM */
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1.2rem;
+        }
+
+        .input-group i {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            color: var(--primary);
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 0.9rem 1rem 0.9rem 3rem;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .input-group textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* REVEAL ANIMATION */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 0.8s;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:900px) {
+
+            .hero-content,
+            .about,
+            .contact {
+                grid-template-columns: 1fr
+            }
+
+            .nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                background: white;
+                width: 100%
+            }
+
+            .nav ul.active {
+                display: flex
+            }
+
+            .menu-btn {
+                display: block
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="nav">
+            <div class="logo">Jona Mae A. Zurita</div>
+            <i class="fas fa-bars menu-btn" id="menuBtn"></i>
+            <ul id="menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content reveal">
+
+            <div class="hero-text">
+                <span class="hero-badge">
+                    <i class="fas fa-briefcase"></i> Virtual Assistant
+                </span>
+
+                <h1>Hi, I’m <span>Jona Mae A. Zurita</span></h1>
+
+                <p>
+                    Proactive planner and administrative virtual assistant with over
+                    <strong>2+ years of experience</strong> in SAP systems, data management,
+                    reporting, and operational support. I help businesses stay organized
+                    and efficient.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="Zurita, Jona Mae CV.pdf.pdf" class="btn" download>
+                        <i class="fas fa-download"></i> Download Resume
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-img">
+                <div class="img-ring"></div>
+                <img src="1727409476712.jpg" alt="Jona Mae A. Zurita">
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+                <p>Professional Virtual Assistant</p>
+            </div>
+
+            <div class="about-grid">
+
+                <!-- VA ILLUSTRATION IMAGE -->
+                <div class="about-img">
+                    <div class="img-ring"></div>
+                    <img src="Gemini_Generated_Image_4fyur14fyur14fyu.png" alt="Virtual Assistant Illustration">
+                </div>
+
+                <!-- TEXT + SKILLS -->
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            Detail-oriented Virtual Assistant with experience in administrative support, data entry, and
+                            online tasks. Proficient in SAP systems and Microsoft Excel, helping businesses stay
+                            organized
+                            and efficient.
+                        </p>
+                    </div>
+
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <i class="fas fa-cogs"></i>
+                            <span>SAP System</span>
+                        </div>
+                        <div class="skill-card">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Data Entry & Reporting</span>
+                        </div>
+                        <div class="skill-card">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email & Admin Support</span>
+                        </div>
+                        <div class="skill-card">
+                            <i class="fas fa-boxes-stacked"></i>
+                            <span>Inventory Monitoring</span>
+                        </div>
+                        <div class="skill-card">
+                            <i class="fas fa-table"></i>
+                            <span>Microsoft Excel</span>
+                        </div>
+                        <div class="skill-card">
+                            <i class="fas fa-folder-open"></i>
+                            <span>Record Management</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>Services</h2>
+            </div>
+            <div class="services">
+                <div class="service-card">
+                    <i class="fas fa-database"></i>
+                    <h3>SAP Administrative Support</h3>
+                    <p>Creation of task orders, work orders, confirmations, and accurate SAP documentation.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-file-excel"></i>
+                    <h3>Reports & Data Management</h3>
+                    <p>Encoding, monitoring, and generating operational reports using Microsoft Excel.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-boxes-stacked"></i>
+                    <h3>Inventory & Records Management</h3>
+                    <p>Monitoring PPE, medicine stocks, organizing records, and inventory tracking.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section id="experience" class="reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>Experience</h2>
+            </div>
+
+            <div class="tree-timeline">
+
+                <div class="tree-item">
+                    <div class="tree-dot"></div>
+                    <div class="tree-content">
+                        <h3>Agri Mid-Range & Short-Range Planning</h3>
+                        <span>Dole Philippines Inc. | Aug 2023 – Sept 2025</span>
+                        <p>
+                            Handled SAP task orders, work orders, operational reporting,
+                            inventory monitoring, and planning support.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tree-item">
+                    <div class="tree-dot"></div>
+                    <div class="tree-content">
+                        <h3>Office Assistant</h3>
+                        <span>2020 – 2022</span>
+                        <p>
+                            Assisted with clerical tasks, reports, data organization,
+                            and administrative support.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tree-item">
+                    <div class="tree-dot"></div>
+                    <div class="tree-content">
+                        <h3>On-the-Job Training</h3>
+                        <span>TIBUD-SKMPC | Mar 2023 – May 2023</span>
+                        <p>
+                            Conducted research, interviews, cacao processing,
+                            and documentation.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tree-item">
+                    <div class="tree-dot"></div>
+                    <div class="tree-content">
+                        <h3>Work Immersion</h3>
+                        <span>ADM Company Philippines / Neovia Philippines | Feb 2018</span>
+                        <p>
+                            Assisted in research activities, teaching,
+                            interviews, and documentation.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+                <p>Let’s work together</p>
+            </div>
+
+            <div class="contact-grid">
+
+                <!-- CONTACT INFO -->
+                <div class="contact-cards">
+
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>jonamaezurita0@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+63 999 483 8834</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <i class="fas fa-location-dot"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Polomolok, South Cotabato</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <i class="fas fa-language"></i>
+                        <div>
+                            <h4>Languages</h4>
+                            <p>English, Tagalog</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- CONTACT FORM -->
+                <form class="contact-form">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-message"></i>
+                        <textarea placeholder="Your Message"></textarea>
+                    </div>
+
+                    <button class="btn">Send Message</button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Jona Mae A. Zurita</p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const menu = document.getElementById('menu');
+        menuBtn.onclick = () => menu.classList.toggle('active');
+
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+        }, { threshold: 0.2 });
+        reveals.forEach(r => observer.observe(r));
+    </script>
+
+</body>
+
+</html>
